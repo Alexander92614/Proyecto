@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Productos</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .logo {
+            max-width: 150px; /* Ajusta este valor según tus necesidades */
+            height: auto;
+        }
+    </style>
+</head>
+<body class="container">
+    <header class="my-4 text-center">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo Tienda ModaNova" class="logo">
+        <h1 class="my-4">Gestión de Productos</h1>
+    </header>
+    
+    <form method="POST" action="/productos" class="mb-4">
+        <div class="form-group">
+            <label for="nombre_producto">Nombre del Producto:</label>
+            <input type="text" id="nombre_producto" name="nombre_producto" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="descripcion">Descripción:</label>
+            <input type="text" id="descripcion" name="descripcion" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="precio">Precio:</label>
+            <input type="number" step="0.01" id="precio" name="precio" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="stock">Stock:</label>
+            <input type="number" id="stock" name="stock" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Añadir Producto</button>
+    </form>
+
+    <h2>Lista de Productos</h2>
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID Producto</th>
+                <th>Nombre del Producto</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Stock</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for producto in productos %}
+            <tr>
+                <td>{{ producto[0] }}</td>
+                <td>{{ producto[1] }}</td>
+                <td>{{ producto[2] }}</td>
+                <td>{{ producto[3] }}</td>
+                <td>{{ producto[4] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="/" class="btn btn-secondary">Volver a Inicio</a>
+</body>
+</html>
